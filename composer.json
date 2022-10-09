@@ -1,0 +1,21 @@
+{
+    "name": "kharlamov/simple-crud-app",
+    "description": "\"Simple demo CRUD application (stack: PHP 8.0, MySQL)\"",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Kharlamov\\SimpleCrudApp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Kharlamov Vladislav",
+            "email": "kharlamov.workspace@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "vlucas/phpdotenv": "^5.4"
+
+    }
+}
