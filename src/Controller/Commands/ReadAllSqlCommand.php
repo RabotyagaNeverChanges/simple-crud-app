@@ -14,9 +14,9 @@ class ReadAllSqlCommand extends SqlCommand {
         $this->setResult(
             $this->getDatabaseConnector()
                 ->getDatabaseConnection()
-                ->query($query))
-        ;
-        if ($this->getResult() === false) { throw new WrongTableException("Wrong table name "); }
+                ->query($query)
+        );
+        if ($this->getResult() === false) { throw new WrongTableException("Wrong table name"); }
         return $this;
     }
 

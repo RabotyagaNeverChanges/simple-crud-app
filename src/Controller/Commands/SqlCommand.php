@@ -9,11 +9,20 @@ abstract class SqlCommand {
     private ?DatabaseConnector $databaseConnector;
     private ?string $tableName;
 
+    private ?array $keys;
+    private ?array $values;
+
     private mysqli_result|bool $result;
 
-    public function __construct(DatabaseConnector $databaseConnector = null, ?string $tableName = null) {
+    public function __construct(DatabaseConnector $databaseConnector = null,
+                                ?string $tableName = null,
+                                ?array $keys= null,
+                                ?array $values = null,
+    ) {
         $this->databaseConnector = $databaseConnector;
         $this->tableName = $tableName;
+        $this->keys = $keys;
+        $this->values = $values;
     }
 
     /**
@@ -48,7 +57,37 @@ abstract class SqlCommand {
         return $this;
     }
 
-    abstract public function execute(): SqlCommand;
+    /**
+     * @param array|null $keys
+     * @return SqlCommand
+     */
+    public function setKeys(?array $keys): SqlCommand {
+        $this->keys = $keys;
+        return $this;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getKeys(): ?array {
+        return $this->keys;
+    }
+
+    /**
+     * @param array|null $values
+     * @return SqlCommand
+     */
+    public function setValues(?array $values): SqlCommand {
+        $this->values = $values;
+        return $this;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getValues(): ?array {
+        return $this->values;
+    }
 
     /**
      * @return bool|mysqli_result
@@ -65,4 +104,6 @@ abstract class SqlCommand {
         $this->result = $result;
         return $this;
     }
+
+    abstract public function execute(): SqlCommand;
 }
