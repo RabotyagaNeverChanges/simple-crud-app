@@ -14,12 +14,12 @@ class DatabaseConnector {
      */
     public function __construct() {
         require_once "config/project_config.php";
-        Dotenv::createImmutable(PROJECT_ROOT)->safeLoad();
-        $this->databaseConnection = mysqli_connect(
-            hostname: getenv("DB_HOST"),
-            username: getenv("DB_USER"),
-            password: getenv("DB_PASSWORD"),
-            database: getenv("DB_NAME"),
+        $dotenv = Dotenv::createImmutable(PROJECT_ROOT)->load();
+        $this->databaseConnection = new mysqli(
+            $_ENV['DB_HOST'],
+            $_ENV['DB_USER'],
+            $_ENV['DB_PASSWORD'],
+            $_ENV['DB_NAME'],
         );
         if ($this->databaseConnection->connect_error) {
             throw new ConnectionException("Unable to connect to database");
