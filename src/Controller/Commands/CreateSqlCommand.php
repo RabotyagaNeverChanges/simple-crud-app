@@ -7,24 +7,24 @@ use Kharlamov\SimpleCrudApp\Controller\Commands\Exceptions\InvalidInsertionExcep
 
 class CreateSqlCommand extends SqlCommand {
 
-    private ?array $keys;
-    private ?array $values;
+    private ?array $keys = null;
+    private ?array $values = null;
 
-
-    /**
-     * @param array|null $keys
-     * @return SqlCommand
-     */
-    public function setKeys(?array $keys): SqlCommand {
-        $this->keys = $keys;
-        return $this;
-    }
 
     /**
      * @return array|null
      */
     public function getKeys(): ?array {
         return $this->keys;
+    }
+
+    /**
+     * @param array|null $keys
+     * @return CreateSqlCommand
+     */
+    public function setKeys(?array $keys): CreateSqlCommand {
+        $this->keys = $keys;
+        return $this;
     }
 
     /**
@@ -36,9 +36,9 @@ class CreateSqlCommand extends SqlCommand {
 
     /**
      * @param array|null $values
-     * @return SqlCommand
+     * @return CreateSqlCommand
      */
-    public function setValues(?array $values): SqlCommand {
+    public function setValues(?array $values): CreateSqlCommand {
         $this->values = $values;
         return $this;
     }
